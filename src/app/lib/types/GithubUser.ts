@@ -1,4 +1,4 @@
-export interface User  {
+export interface GithubUser  {
     username : string ,
     name : string,
     avatar : string,
