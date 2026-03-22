@@ -27,7 +27,7 @@ export async function getGithubUser(username: string): Promise<GithubUser> {
 
 
 export async function getGithubUserRepos(username: string): Promise<GithubRepo[]> {
-    const res = await fetch(`https://api.github.com/users/${username}/repos`);
+    const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=6`);
 
     if (!res.ok) {
         throw new Error("Failed to get user repos")
@@ -47,7 +47,7 @@ export async function getGithubUserRepos(username: string): Promise<GithubRepo[]
 }
 
 export async function getGithubUserEvents(username: string): Promise<GithubEvent[]> {
-    const res = await fetch(`https://api.github.com/users/${username}/events/public`);
+    const res = await fetch(`https://api.github.com/users/${username}/events?per_page=10`);
 
     if (!res.ok) {
         throw new Error("Failed to get user events");
