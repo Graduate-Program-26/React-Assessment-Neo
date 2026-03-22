@@ -50,4 +50,4 @@ interface IssuesEvent extends GithubBaseEvent {
 }
 
 export type GithubEvent =
-    "WatchEvent" | "PushEvent" | "PullRequestEvent" | "IssuesEvent";
+    WatchEvent | PushEvent | PullRequestEvent | IssuesEvent;
