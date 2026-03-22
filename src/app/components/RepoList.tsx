@@ -1,8 +1,8 @@
-import { GithubRepo } from '../lib/types/GithubRepo';
-import RepoInfoCard from './RepoInfoCard';
+import { GithubRepo } from "../lib/types/GithubRepo";
+import RepoInfoCard from "./RepoInfoCard";
 
 interface RepoListProps {
-  repos: GithubRepo[]
+  repos: GithubRepo[];
 }
 
 export default function RepoList({ repos }: RepoListProps) {
@@ -12,5 +12,5 @@ export default function RepoList({ repos }: RepoListProps) {
         <RepoInfoCard key={repo.name} repo={repo} />
       ))}
     </div>
-  )
+  );
 }
