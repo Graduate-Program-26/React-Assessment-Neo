@@ -4,7 +4,7 @@ interface UserProps {
   user: GithubUser;
 }
 
-export default function UserProfile({ user }: UserProps) {
+export default function UserProfileCard({ user }: UserProps) {
   return (
     <div className="card bg-base-100 shadow-xl">
       <div className="card-body">

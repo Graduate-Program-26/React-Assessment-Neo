@@ -4,7 +4,7 @@ interface RepoProps {
   repo: GithubRepo;
 }
 
-export default function RepoCard({ repo }: RepoProps) {
+export default function RepoInfoCard({ repo }: RepoProps) {
   const formattedDate = new Date(repo.lastUpdated).toLocaleDateString("en-ZA", {
     year: "numeric",
     month: "2-digit",
