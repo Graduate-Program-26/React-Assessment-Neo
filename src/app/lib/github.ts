@@ -1,18 +1,18 @@
-import { GithubUser } from "./types/GithubUser";
+import { GithubUser, GithubUserResponse } from "./types/GithubUser";
 import { GithubRepo, GithubRepoResponse } from "./types/GithubRepo";
 import { GithubEvent } from "./types/GithubEvent";
 import { isGithubEventResponse } from "./utils/githubEventValidator";
 
 export async function getGithubUser(username: string): Promise<GithubUser> {
   const res = await fetch(`https://api.github.com/users/${username}`, {
-    next: { revalidate: 3600 },// cache for an hour (to avoid exceeding rate limit)
+    next: { revalidate: 3600 }, // cache for an hour (to avoid exceeding rate limit)
   });
 
   if (!res.ok) {
     throw new Error("Failed to get user");
   }
 
-  const data = await res.json();
+  const data: GithubUserResponse = await res.json();
 
   return {
     username: data.login,
