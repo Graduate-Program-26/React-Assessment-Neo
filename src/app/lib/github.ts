@@ -4,7 +4,9 @@ import { GithubEvent } from "./types/GithubEvent";
 import { isGithubEventResponse } from "./utils/githubEventValidator";
 
 export async function getGithubUser(username: string): Promise<GithubUser> {
-  const res = await fetch(`https://api.github.com/users/${username}`);
+  const res = await fetch(`https://api.github.com/users/${username}`, {
+    next: { revalidate: 3600 },// cache for an hour (to avoid exceeding rate limit)
+  });
 
   if (!res.ok) {
     throw new Error("Failed to get user");
@@ -28,6 +30,9 @@ export async function getGithubUserRepos(
 ): Promise<GithubRepo[]> {
   const res = await fetch(
     `https://api.github.com/users/${username}/repos?per_page=6`,
+    {
+      next: { revalidate: 3600 },
+    },
   );
 
   if (!res.ok) {
@@ -50,6 +55,9 @@ export async function getGithubUserEvents(
 ): Promise<GithubEvent[]> {
   const res = await fetch(
     `https://api.github.com/users/${username}/events?per_page=10`,
+    {
+      next: { revalidate: 3600 },
+    },
   );
 
   if (!res.ok) {
