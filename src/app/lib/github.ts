@@ -2,7 +2,7 @@ import { GithubUser, GithubUserResponse } from "./types/GithubUser";
 import { GithubRepo, GithubRepoResponse } from "./types/GithubRepo";
 import { GithubEvent } from "./types/GithubEvent";
 import { isGithubEventResponse } from "./utils/githubEventValidator";
-import {GithubSearchResponse} from "./types/GithubSearch"
+import { GithubSearchResponse } from "./types/GithubSearch";
 
 export async function getGithubUser(username: string): Promise<GithubUser> {
   const res = await fetch(`https://api.github.com/users/${username}`, {
@@ -147,26 +147,28 @@ export async function getGithubUserEvents(
   return events;
 }
 
-export async function searchForGithubUsers(query: string): Promise<GithubUser[]> {
+export async function searchForGithubUsers(
+  query: string,
+): Promise<GithubUser[]> {
   const response = await fetch(
     `https://api.github.com/search/users?q=${encodeURIComponent(query)}`,
     {
       next: { revalidate: 3600 },
-    }
-  )
+    },
+  );
 
-  if (!response.ok) throw new Error('Failed to search users')
+  if (!response.ok) throw new Error("Failed to search users");
 
-  const data : GithubSearchResponse = await response.json();
+  const data: GithubSearchResponse = await response.json();
 
   return data.items.map((item) => ({
     username: item.login,
-    name: item.name ?? null,  
+    name: item.name ?? null,
     avatar: item.avatar_url,
-    bio: item.bio ?? null, 
+    bio: item.bio ?? null,
     followers: item.followers ?? 0,
     following: item.following ?? 0,
     publicRepos: item.public_repos ?? 0,
     // props with "?? null" and "?? 0" return undefined
-  }))
+  }));
 }
