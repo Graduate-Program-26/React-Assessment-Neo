@@ -3,7 +3,7 @@ import {
   getGithubUserEvents,
   getGithubUserRepos,
 } from "@/app/lib/github";
-import UserProfileCard from "@/app/components/UserProfileCard";
+import UserInfoCard from "@/app/components/UserInfoCard";
 import ActivityFeed from "@/app/components/ActivityFeed";
 import RepoList from "@/app/components/RepoList";
 
@@ -23,7 +23,7 @@ export default async function UserProfilePage({
     return (
       <div className="min-h-screen bg-base-200 p-6">
         <div className="max-w-7xl mx-auto space-y-6">
-          <UserProfileCard user={user} />
+          <UserInfoCard user={user} />
 
           <div className="grid grid-cols-1 gap-6">
             <div className=" space-y-6">
