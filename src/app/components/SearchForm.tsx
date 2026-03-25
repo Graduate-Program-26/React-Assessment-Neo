@@ -29,7 +29,7 @@ export default function SearchForm() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-5">
       <SearchBar onSearch={handleSearch} />
 
       {state.status === "error" && <p>{state.message}</p>}

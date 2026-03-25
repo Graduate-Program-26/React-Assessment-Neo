@@ -1,31 +1,24 @@
 import Link from "next/link";
 import type { GithubUser } from "../lib/types/GithubUser";
+import SearchUserCard from "./SearchUserCard";
 
 interface UserListProps {
-    results: GithubUser[];
-    query: string;
+  results: GithubUser[];
+  query: string;
 }
 
 export default function UserList({ results, query }: UserListProps) {
-    if (results.length === 0) {
-        return <p>No users found with "{query}" were found</p>;
-    }
+  if (results.length === 0) {
+    return <p>No users found with "{query}" was found</p>;
+  }
 
-    return (
-        <ul>
-            {results.map((user) => (
-                <li key={user.username}>
-                    <Link href={`/profile/${user.username}`}>
-                        <span>{user.username}</span>
-                        <img
-                            src={user.avatar}
-                            alt={`${user.username} avatar`}
-
-                        />
-
-                    </Link>
-                </li>
-            ))}
-        </ul>
-    );
+  return (
+    <section className="flex flex-wrap justify-center gap-5">
+      {results.map((user) => (
+        <Link href={`/profile/${user.username}`}>
+          <SearchUserCard username={user.username} avatar={user.avatar} />
+        </Link>
+      ))}
+    </section>
+  );
 }
