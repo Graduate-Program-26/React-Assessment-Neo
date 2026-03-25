@@ -16,7 +16,11 @@ export default function UserList({ results, query }: UserListProps) {
     <section className="flex flex-wrap justify-center gap-5">
       {results.map((user) => (
         <Link key={user.id} href={`/profile/${user.username}`}>
-          <SearchUserCard id={user.id} username={user.username} avatar={user.avatar} />
+          <SearchUserCard
+            id={user.id}
+            username={user.username}
+            avatar={user.avatar}
+          />
         </Link>
       ))}
     </section>

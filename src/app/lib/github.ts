@@ -16,7 +16,7 @@ export async function getGithubUser(username: string): Promise<GithubUser> {
   const data: GithubUserResponse = await res.json();
 
   return {
-    id : data.id,
+    id: data.id,
     username: data.login,
     name: data.name,
     avatar: data.avatar_url,
