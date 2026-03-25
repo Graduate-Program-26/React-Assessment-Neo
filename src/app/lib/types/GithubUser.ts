@@ -1,4 +1,5 @@
 export interface GithubUser {
+  id: number;
   username: string;
   name: string;
   avatar: string;
@@ -9,6 +10,7 @@ export interface GithubUser {
 }
 
 export interface GithubUserResponse {
+  id: number;
   login: string;
   name: string;
   avatar_url: string;

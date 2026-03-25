@@ -16,6 +16,7 @@ export async function getGithubUser(username: string): Promise<GithubUser> {
   const data: GithubUserResponse = await res.json();
 
   return {
+    id : data.id,
     username: data.login,
     name: data.name,
     avatar: data.avatar_url,
@@ -162,6 +163,7 @@ export async function searchForGithubUsers(
   const data: GithubSearchResponse = await response.json();
 
   return data.items.map((item) => ({
+    id: item.id,
     username: item.login,
     name: item.name ?? null,
     avatar: item.avatar_url,
@@ -169,6 +171,6 @@ export async function searchForGithubUsers(
     followers: item.followers ?? 0,
     following: item.following ?? 0,
     publicRepos: item.public_repos ?? 0,
-    // props with "?? null" and "?? 0" return undefined
+    // props with "?? null" and "?? 0" return undefinedx
   }));
 }
