@@ -31,7 +31,7 @@ export default function RepoInfoCard({ repo }: RepoProps) {
 
         <div className="flex gap-3 items-center text-xs text-base-content/60 mt-2">
           {repo.language && (
-            <span className="badge badge-outline badge-sm">
+            <span className="badge badge-outline badge-sm badge-primary">
               {repo.language}
             </span>
           )}
