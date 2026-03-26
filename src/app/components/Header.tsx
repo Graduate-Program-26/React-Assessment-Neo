@@ -1,29 +1,40 @@
-import Link from "next/link"
-import ThemeToggle from "./ThemeToggle"
+import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
+import { handleSignOut } from "../lib/actions/auth";
+import { auth } from "@/auth";
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth();
+  const username = session?.user?.githubUsername;
   return (
     <header className="navbar bg-base-300 px-7">
-
       <div className="flex-1">
-        <Link href="/dashboard" className="text-xl font-bold tracking-tight">
+        <Link
+          href={`/profile/${username}`}
+          className="
+          text-xl 
+          font-bold 
+          tracking-tight 
+          hover:text-blue dark:hover:text-blue-300
+          active:scale-100
+          transition-all duration-150
+          "
+        >
           MyGithub Dashboard
         </Link>
-         <ThemeToggle /> 
+        <ThemeToggle />
       </div>
-
 
       <nav className="hidden lg:flex flex-none gap-2">
         <Link href="/dashboard" className="btn btn-ghost btn-sm">
           Search
         </Link>
-        <form>
+        <form action={handleSignOut}>
           <button type="submit" className="btn btn-ghost btn-sm">
             Sign out
           </button>
         </form>
       </nav>
-
 
       <div className="flex lg:hidden">
         <div className="dropdown dropdown-end">
@@ -50,8 +61,7 @@ export default function Header() {
               <Link href="/dashboard">Search</Link>
             </li>
             <li>
-              <form
-              >
+              <form action={handleSignOut}>
                 <button type="submit" className="w-full text-left">
                   Sign out
                 </button>
@@ -60,7 +70,6 @@ export default function Header() {
           </ul>
         </div>
       </div>
-
     </header>
-  )
+  );
 }

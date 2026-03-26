@@ -1,7 +1,15 @@
+import { handleSignIn } from "../lib/actions/auth";
+
 export default function LoginForm() {
   return (
-    <form className="flex flex-col gap-4 items-center mt-8 p-6">
-      <button className="btn bg-black text-white border-black  font-medium">
+    <form
+      className="flex flex-col gap-4 items-center mt-8 p-6"
+      action={handleSignIn}
+    >
+      <button
+        className="btn bg-black text-white border-black  font-medium"
+        type="submit"
+      >
         <svg
           aria-label="GitHub logo"
           width="16"
