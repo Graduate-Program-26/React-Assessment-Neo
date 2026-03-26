@@ -17,7 +17,9 @@ export default function SearchUserCard({
         <img src={avatar} alt="User avatar image" />
       </figure>
       <div className="card-body w-xs">
-        <h2 className="card-title flex text-black items-center justify-center ">@{username}</h2>
+        <h2 className="card-title flex text-black items-center justify-center ">
+          @{username}
+        </h2>
       </div>
     </div>
   );

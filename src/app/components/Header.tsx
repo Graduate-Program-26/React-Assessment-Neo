@@ -1,14 +1,13 @@
-import Link from "next/link"
-import ThemeToggle from "./ThemeToggle"
-import { handleSignOut } from "../lib/actions/auth"
-import { auth, signOut } from "@/auth"
+import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
+import { handleSignOut } from "../lib/actions/auth";
+import { auth } from "@/auth";
 
 export default async function Header() {
-  const session = await auth()
-  const username = session?.user?.githubUsername
+  const session = await auth();
+  const username = session?.user?.githubUsername;
   return (
     <header className="navbar bg-base-300 px-7">
-
       <div className="flex-1">
         <Link
           href={`/profile/${username}`}
@@ -19,26 +18,23 @@ export default async function Header() {
           hover:text-blue dark:hover:text-blue-300
           active:scale-100
           transition-all duration-150
-          ">
+          "
+        >
           MyGithub Dashboard
         </Link>
         <ThemeToggle />
       </div>
 
-
       <nav className="hidden lg:flex flex-none gap-2">
         <Link href="/dashboard" className="btn btn-ghost btn-sm">
           Search
         </Link>
-        <form
-          action={handleSignOut}
-        >
+        <form action={handleSignOut}>
           <button type="submit" className="btn btn-ghost btn-sm">
             Sign out
           </button>
         </form>
       </nav>
-
 
       <div className="flex lg:hidden">
         <div className="dropdown dropdown-end">
@@ -65,12 +61,8 @@ export default async function Header() {
               <Link href="/dashboard">Search</Link>
             </li>
             <li>
-              <form
-                action={handleSignOut}
-              >
-                <button
-                  type="submit"
-                  className="w-full text-left">
+              <form action={handleSignOut}>
+                <button type="submit" className="w-full text-left">
                   Sign out
                 </button>
               </form>
@@ -78,7 +70,6 @@ export default async function Header() {
           </ul>
         </div>
       </div>
-
     </header>
-  )
+  );
 }
