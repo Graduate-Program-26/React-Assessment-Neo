@@ -1,6 +1,6 @@
 import Link from "next/link"
 import ThemeToggle from "./ThemeToggle"
-import { signOut } from "@/auth"
+import { handleSignOut } from "../lib/actions/auth"
 
 export default function Header() {
   return (
@@ -19,10 +19,7 @@ export default function Header() {
           Search
         </Link>
         <form
-          action={async () => {
-            "use server"
-            await signOut({ redirectTo: "/" })
-          }}
+          action={handleSignOut}
         >
           <button type="submit" className="btn btn-ghost btn-sm">
             Sign out
@@ -57,10 +54,7 @@ export default function Header() {
             </li>
             <li>
               <form
-                action={async () => {
-                  "use server"
-                  await signOut({ redirectTo: "/" })
-                }}
+                action={handleSignOut}
               >
                 <button
                   type="submit"

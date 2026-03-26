@@ -1,13 +1,10 @@
-import { signIn } from "@/auth"
+import { handleSignIn } from "../lib/actions/auth";
  
 export default function LoginForm() {
   return (
     <form 
     className="flex flex-col gap-4 items-center mt-8 p-6"
-    action={async () => {
-        "use server"
-        await signIn("github", { redirectTo: "/dashboard" })
-      }}
+    action={handleSignIn}
     >
       <button 
       className="btn bg-black text-white border-black  font-medium"
