@@ -1,13 +1,25 @@
 import Link from "next/link"
 import ThemeToggle from "./ThemeToggle"
 import { handleSignOut } from "../lib/actions/auth"
+import { auth, signOut } from "@/auth"
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth()
+  const username = session?.user?.githubUsername
   return (
     <header className="navbar bg-base-300 px-7">
 
       <div className="flex-1">
-        <Link href="/dashboard" className="text-xl font-bold tracking-tight">
+        <Link
+          href={`/profile/${username}`}
+          className="
+          text-xl 
+          font-bold 
+          tracking-tight 
+          hover:text-blue dark:hover:text-blue-300
+          active:scale-100
+          transition-all duration-150
+          ">
           MyGithub Dashboard
         </Link>
         <ThemeToggle />
