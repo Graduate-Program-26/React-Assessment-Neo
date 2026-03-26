@@ -1,5 +1,6 @@
 import Link from "next/link"
 import ThemeToggle from "./ThemeToggle"
+import { signOut } from "@/auth"
 
 export default function Header() {
   return (
@@ -9,7 +10,7 @@ export default function Header() {
         <Link href="/dashboard" className="text-xl font-bold tracking-tight">
           MyGithub Dashboard
         </Link>
-         <ThemeToggle /> 
+        <ThemeToggle />
       </div>
 
 
@@ -17,7 +18,12 @@ export default function Header() {
         <Link href="/dashboard" className="btn btn-ghost btn-sm">
           Search
         </Link>
-        <form>
+        <form
+          action={async () => {
+            "use server"
+            await signOut({ redirectTo: "/" })
+          }}
+        >
           <button type="submit" className="btn btn-ghost btn-sm">
             Sign out
           </button>
@@ -51,8 +57,14 @@ export default function Header() {
             </li>
             <li>
               <form
+                action={async () => {
+                  "use server"
+                  await signOut({ redirectTo: "/" })
+                }}
               >
-                <button type="submit" className="w-full text-left">
+                <button
+                  type="submit"
+                  className="w-full text-left">
                   Sign out
                 </button>
               </form>
